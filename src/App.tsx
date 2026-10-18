@@ -23,6 +23,7 @@ import { DatabaseState, Invoice, Item, Party, BusinessProfile, MiscTransaction, 
 import { RefreshCw, LayoutGrid, CheckCircle, LogOut, Menu, ChevronDown, Sparkles, UtensilsCrossed } from "lucide-react";
 import { APP_VERSION } from "./version";
 import MunimjiDrawer from "./components/MunimjiDrawer";
+import { useDialog } from "./context/DialogContext";
 import { BUSINESS_PERSONA_PRESETS, RESTAURANT_TABLES_PRESET } from "./utils/businessPersonaUtils";
 import {
   initDriveAuth,
@@ -31,6 +32,7 @@ import {
 } from "./services/googleDriveBackup";
 
 export default function App() {
+  const { showConfirm, showAlert } = useDialog();
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [dbState, setDbState] = useState<DatabaseState | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -313,8 +315,32 @@ export default function App() {
     }
   };
 
-  // Switch Business Vertical with Presets
+  // Switch Business Vertical with Presets & PIN Protection
   const handleSwitchVertical = async (verticalId: string) => {
+    const typeInfo = BUSINESS_TYPES.find(b => b.id === verticalId);
+    
+    const confirmed = await showConfirm({
+      title: "🔒 Admin PIN Required for Business Vertical Switch",
+      message: `You are about to switch the business vertical to:\n• ${typeInfo?.label || verticalId}\n\nThis will reconfigure POS layouts, tax rules, and module tabs (e.g. Restaurant Tables). To prevent accidental changes, please enter the Admin PIN (Default: 1234) or confirm.`,
+      confirmText: "Confirm & Switch Vertical",
+      cancelText: "Cancel",
+      variant: "warning"
+    });
+
+    if (!confirmed) return;
+
+    // Prompt for static PIN
+    const enteredPin = window.prompt("Enter Admin PIN to switch business vertical (Default PIN: 1234):");
+    if (enteredPin === null) return; // Cancelled
+    if (enteredPin.trim() !== "1234") {
+      await showAlert({
+        title: "❌ Incorrect PIN",
+        message: "The Admin PIN entered is incorrect. Business vertical switch cancelled.",
+        variant: "danger"
+      });
+      return;
+    }
+
     try {
       const res = await fetch("/api/business/switch-vertical", {
         method: "POST",
@@ -324,8 +350,7 @@ export default function App() {
       if (res.ok) {
         await fetchState();
         setIsVerticalDropdownOpen(false);
-        const typeInfo = BUSINESS_TYPES.find(b => b.id === verticalId);
-        setVerticalSwitchNotice(`Switched to ${typeInfo?.label || verticalId}. Specialized vertical features activated!`);
+        setVerticalSwitchNotice(`Successfully switched to ${typeInfo?.label || verticalId}. Specialized vertical features activated!`);
         setTimeout(() => setVerticalSwitchNotice(null), 6000);
         if (verticalId === "restaurant") {
           setActiveTab("tables");
