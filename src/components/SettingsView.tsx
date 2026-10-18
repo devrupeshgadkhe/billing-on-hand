@@ -227,6 +227,33 @@ export default function SettingsView({
         return;
       }
 
+      // If businessType was changed, require Admin PIN
+      if (base.businessType !== business.businessType) {
+        const confirmed = await showConfirm({
+          title: "🔒 Admin PIN Required for Business Vertical Change",
+          message: `You are changing your store industry vertical from "${business.businessType || 'general'}" to "${base.businessType}".\n\nThis alters POS layouts, tax rules, and module tabs. Please enter the Admin PIN (Default: 1234) to confirm.`,
+          confirmText: "Confirm & Change Vertical",
+          cancelText: "Cancel",
+          variant: "warning"
+        });
+
+        if (!confirmed) {
+          setIsSaving(false);
+          return;
+        }
+
+        const enteredPin = window.prompt("Enter Admin PIN to confirm business vertical change (Default PIN: 1234):");
+        if (enteredPin === null || enteredPin.trim() !== "1234") {
+          await showAlert({
+            title: "❌ Incorrect or Cancelled PIN",
+            message: "Incorrect Admin PIN entered. Business vertical change cancelled.",
+            variant: "danger"
+          });
+          setIsSaving(false);
+          return;
+        }
+      }
+
       const upiId = (base.upiId || base.thermalConfig?.upiId || "").trim();
       const upiMerchantName = base.upiMerchantName || base.thermalConfig?.upiMerchantName || base.name || "";
       const bankName = base.bankName || base.thermalConfig?.bankName || "";

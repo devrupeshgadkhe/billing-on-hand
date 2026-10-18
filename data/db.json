@@ -35,6 +35,72 @@
       "lastSendStatus": "success",
       "lastSentDate": "2026-10-03",
       "lastSentAt": "2026-10-03T13:36:01.666Z"
+    },
+    "defaultBillingMode": "gst",
+    "businessType": "restaurant",
+    "upiId": "",
+    "upiMerchantName": "Apex Electro-Tech Systems",
+    "bankName": "",
+    "bankAccountNo": "",
+    "bankIfsc": "",
+    "bankBranch": "",
+    "showUpiQrCode": true,
+    "showBankDetails": false,
+    "thermalConfig": {
+      "paperWidth": "80mm",
+      "templatePreset": "retail_standard",
+      "fontFamily": "monospace",
+      "fontSize": "medium",
+      "language": "bilingual",
+      "showLogo": true,
+      "logoHeight": 50,
+      "headerGreeting": "WELCOME",
+      "showBusinessName": true,
+      "businessNameSize": "large",
+      "showAddress": true,
+      "showPhone": true,
+      "showEmail": false,
+      "showGstin": true,
+      "showFssai": false,
+      "showDrugLicense": false,
+      "customHeaderNote": "",
+      "showBillNo": true,
+      "showDate": true,
+      "showTime": true,
+      "showCashierName": true,
+      "showCustomerName": true,
+      "showCustomerPhone": true,
+      "showCustomerAddress": false,
+      "showCustomerGstin": true,
+      "showPreviousBalance": true,
+      "showTotalBalance": true,
+      "showItemIndex": true,
+      "showHsn": true,
+      "showBatch": true,
+      "showExpiry": true,
+      "showRate": true,
+      "showDiscount": true,
+      "showGstPercent": true,
+      "wrapItemName": true,
+      "itemSpacing": "comfortable",
+      "showTaxBreakdown": true,
+      "showSavingsBanner": true,
+      "showPaymentMode": true,
+      "showCashTendered": true,
+      "showChangeReturned": true,
+      "showUpiQrCode": true,
+      "upiId": "",
+      "upiMerchantName": "Apex Electro-Tech Systems",
+      "showBankDetails": false,
+      "bankName": "",
+      "bankAccountNo": "",
+      "bankIfsc": "",
+      "bankBranch": "",
+      "showTerms": true,
+      "termsAndConditions": "1. Goods once sold cannot be returned without original invoice.\n2. Subject to local jurisdiction.",
+      "footerNote": "Thank You! Visit Again!",
+      "showBarcode": true,
+      "cutterFeedLines": 2
     }
   },
   "items": [
@@ -48,7 +114,10 @@
       "minStockAlert": 10,
       "gstRate": 18,
       "unit": "PCS",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 45
+      }
     },
     {
       "id": "item_2",
@@ -60,7 +129,10 @@
       "minStockAlert": 5,
       "gstRate": 18,
       "unit": "BOX",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 12
+      }
     },
     {
       "id": "item_3",
@@ -72,7 +144,10 @@
       "minStockAlert": 30,
       "gstRate": 12,
       "unit": "PCS",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 150
+      }
     },
     {
       "id": "item_4",
@@ -84,7 +159,10 @@
       "minStockAlert": 8,
       "gstRate": 18,
       "unit": "SET",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 6
+      }
     },
     {
       "id": "item_5",
@@ -96,7 +174,10 @@
       "minStockAlert": 100,
       "gstRate": 5,
       "unit": "MTR",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 420
+      }
     },
     {
       "id": "item_1790861267866",
@@ -108,7 +189,10 @@
       "minStockAlert": 5,
       "gstRate": 18,
       "unit": "KGS",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 52
+      }
     },
     {
       "id": "item_1790929265642",
@@ -120,7 +204,10 @@
       "minStockAlert": 5,
       "gstRate": 18,
       "unit": "PCS",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 25
+      }
     },
     {
       "id": "item_1790929269936",
@@ -132,7 +219,10 @@
       "minStockAlert": 5,
       "gstRate": 18,
       "unit": "PCS",
-      "barcodes": []
+      "barcodes": [],
+      "godownStock": {
+        "godown_main": 100
+      }
     }
   ],
   "parties": [
@@ -254,7 +344,10 @@
       "pointsRedeemed": 0,
       "pointsDiscount": 0,
       "pointsEarned": 0,
-      "notes": "Goods delivered in good condition."
+      "notes": "Goods delivered in good condition.",
+      "extraCharges": [],
+      "isNonGst": false,
+      "billingMode": "gst"
     },
     {
       "id": "inv_2",
@@ -293,7 +386,10 @@
       "pointsRedeemed": 0,
       "pointsDiscount": 0,
       "pointsEarned": 0,
-      "notes": "Interstate supply to Karnataka store."
+      "notes": "Interstate supply to Karnataka store.",
+      "extraCharges": [],
+      "isNonGst": false,
+      "billingMode": "gst"
     },
     {
       "id": "inv_3",
@@ -332,7 +428,10 @@
       "pointsRedeemed": 0,
       "pointsDiscount": 0,
       "pointsEarned": 0,
-      "notes": "Stock procurement of cables."
+      "notes": "Stock procurement of cables.",
+      "extraCharges": [],
+      "isNonGst": false,
+      "billingMode": "gst"
     },
     {
       "id": "dn_1790861267900",
@@ -372,9 +471,25 @@
       "pointsRedeemed": 0,
       "pointsDiscount": 0,
       "pointsEarned": 0,
-      "notes": "Cash counter sale"
+      "notes": "Cash counter sale",
+      "extraCharges": [],
+      "isNonGst": false,
+      "billingMode": "gst"
     }
   ],
+  "godowns": [
+    {
+      "id": "godown_main",
+      "name": "Main Store",
+      "address": "Suite 405, Tech Green Boulevard, Bandra East",
+      "managerName": "Store In-charge",
+      "phone": "+91 98765 43210",
+      "isDefault": true,
+      "notes": "Primary billing and sales godown",
+      "createdAt": "2026-10-18"
+    }
+  ],
+  "stockTransfers": [],
   "challans": [],
   "quotations": [],
   "transactions": [
@@ -402,5 +517,55 @@
       "role": "staff"
     }
   ],
-  "offers": []
+  "offers": [],
+  "tables": [
+    {
+      "id": "tbl_1",
+      "tableNumber": "T-1",
+      "section": "AC Dining",
+      "capacity": 4,
+      "status": "available",
+      "currentOrderTotal": 0
+    },
+    {
+      "id": "tbl_2",
+      "tableNumber": "T-2",
+      "section": "AC Dining",
+      "capacity": 6,
+      "status": "available",
+      "currentOrderTotal": 0
+    },
+    {
+      "id": "tbl_3",
+      "tableNumber": "T-3",
+      "section": "Main Hall",
+      "capacity": 4,
+      "status": "available",
+      "currentOrderTotal": 0
+    },
+    {
+      "id": "tbl_4",
+      "tableNumber": "T-4",
+      "section": "Main Hall",
+      "capacity": 2,
+      "status": "available",
+      "currentOrderTotal": 0
+    },
+    {
+      "id": "tbl_5",
+      "tableNumber": "T-5",
+      "section": "Family Section",
+      "capacity": 8,
+      "status": "reserved",
+      "currentOrderTotal": 0
+    },
+    {
+      "id": "tbl_6",
+      "tableNumber": "T-6",
+      "section": "Garden / Terrace",
+      "capacity": 4,
+      "status": "available",
+      "currentOrderTotal": 0
+    }
+  ]
 }
